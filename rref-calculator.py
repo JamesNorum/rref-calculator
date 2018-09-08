@@ -2,7 +2,7 @@ def displayMatrix(matrix):
   for row in matrix:
     print('[', end='')
     for cell in row:
-      print(str(cell).rjust(5), end=' ')
+      print('{0:>6.2f}'.format(cell + 0), end=' ')
     print(']')
   print()
 
@@ -14,6 +14,8 @@ def displayMatrix(matrix):
 def leadingOne(matrix, i):
   # divide every cell in that row by the number in the spot going to be the
   # leading one
+  if matrix[i][i] == 0:
+    return
   matrix[i] = [cell / matrix[i][i] for cell in matrix[i]]
 
 def pivot(matrix, i):
@@ -49,5 +51,13 @@ m3 = [[-1, 1, -4, 2],
       [0, 2, 5, -6],
       [2, 3, 1, -2]]
 
-# displayMatrix(m3)
-displayMatrix(rref(m3))
+m4 = [[1, -1, -1, 2, 0],
+      [0, 1, 4, 3, 10],
+      [0, 0, 1, 1, 2,]]
+
+# leadingOne(m2, 0)
+# pivot(m2, 0)
+# leadingOne(m2, 1)
+# pivot(m2, 1)
+
+displayMatrix(rref(m4))
