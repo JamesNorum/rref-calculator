@@ -17,19 +17,19 @@ def randomMatrix(rows, cols):
     m.append(row)
   return m
 
+# divide every cell in that row by the number in the spot going to be the
+# leading one
 def leadingOne(matrix, i):
-  # divide every cell in that row by the number in the spot going to be the
-  # leading one
   if matrix[i][i] == 0:
     return
   matrix[i] = [cell / matrix[i][i] for cell in matrix[i]]
 
+# zero out all cells above and below the pivot cell
+# will be done after getting a leading one, so
+# find the scale factor = -1 * cell we want to zero, then add 
+# scale factor * leading one row cell to each zero row cell
 def pivot(matrix, i):
-  # zero out all cells above and below the pivot cell
-  # will be done after getting a leading one, so
-  # find the scale factor = -1 * cell we want to zero, then add 
-  # scale factor * leading one row cell to each zero row cell
-  for r, row in enumerate(matrix):
+    for r, row in enumerate(matrix):
     if r != i:
       scale = -1 * row[i]
       matrix[r] = [curr + scale * other for curr, other in zip(matrix[r], matrix[i])]
@@ -39,9 +39,6 @@ def rref(matrix):
     leadingOne(matrix, i)
     pivot(matrix, i)
   return matrix
-
-
-
 
 # m1 = [[1, 2, 3],
 #       [4, 5, 6],
